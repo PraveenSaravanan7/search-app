@@ -1,5 +1,5 @@
 import styles from "./Movie.module.css";
-import { IMovie } from "../models/movie";
+import { IMovie } from "../../models/movie";
 import { useEffect, useRef, useState } from "react";
 
 interface IMovieProps {

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import styles from "./Home.module.css";
-import { Header } from "../components/Header";
-import { useMakeApiCall } from "../hooks/useMakeApiCall";
-import { TGetMoviesResponse, getMovies } from "../services/diagnal";
+import { Header } from "../../components/Header";
+import { useMakeApiCall } from "../../hooks/useMakeApiCall";
+import { TGetMoviesResponse, getMovies } from "../../services/diagnal";
 import { Movie } from "./Movie";
 
 export const Home = () => {
