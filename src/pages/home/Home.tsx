@@ -24,8 +24,8 @@ export const Home = () => {
       setMovies((prev) => [...prev, ...response.page["content-items"].content]);
 
       setReachedEnd(
-        response.page["page-size-returned"] <
-          response.page["page-size-requested"]
+        movies.length + response.page["content-items"].content.length ===
+          +response.page["total-content-items"]
       );
     } catch (e) {
       console.log(e);
