@@ -11,6 +11,7 @@ export const Home = () => {
   const [movies, setMovies] = useState<
     TGetMoviesResponse["page"]["content-items"]["content"]
   >([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const [reachedEnd, setReachedEnd] = useState(false);
 
@@ -48,12 +49,21 @@ export const Home = () => {
 
   return (
     <div className={styles.mainContainer} onScroll={handleScroll}>
-      <Header title="Romantic Comedy" />
+      <Header
+        title="Romantic Comedy"
+        updateSearchQuery={(query) => setSearchQuery(query)}
+      />
 
       <div className={styles.gridContainer}>
-        {movies.map((movie, index) => (
-          <Movie key={index} movie={movie} /> // Using index since movie.name is not unique
-        ))}
+        {movies.map((movie, index) => {
+          if (
+            !searchQuery ||
+            movie.name.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+            return <Movie key={index} movie={movie} />;
+
+          return <></>;
+        })}
       </div>
     </div>
   );

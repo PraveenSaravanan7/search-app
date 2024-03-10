@@ -13,3 +13,7 @@
   align-items: center;
   background-size: cover;
 }
+
+.header > input {
+  height: 30px;
+}
