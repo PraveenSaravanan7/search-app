@@ -1,0 +1,15 @@
+.mainContainer {
+  margin: auto;
+  margin-top: 60px;
+  max-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* scrollbar-width: none; */
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  padding: 1em;
+}

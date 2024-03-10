@@ -1,0 +1,15 @@
+.icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1;
+}
+
+.icons > img {
+  aspect-ratio: 1;
+  width: 100%;
+}
+
+.floatRight {
+  margin-left: auto;
+}
