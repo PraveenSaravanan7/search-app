@@ -7,11 +7,11 @@ export const useMakeApiCall = <T>(makeApiCall: TMakeApiCall<T>) => {
   const [error, setError] = useState<Error>();
   const [data, setData] = useState<T>();
 
-  const execute: TMakeApiCall<T> = async (data, options, page) => {
+  const execute: TMakeApiCall<T> = useCallback(async (data, options) => {
     try {
       setIsLoading(true);
 
-      const response = await makeApiCall(data, options, page);
+      const response = await makeApiCall(data, options, pageNo);
 
       setData(response);
       setPageNo((prev) => prev + 1);
@@ -19,16 +19,17 @@ export const useMakeApiCall = <T>(makeApiCall: TMakeApiCall<T>) => {
       return response;
     } catch (e) {
       setError(e as Error);
-      setIsLoading(false);
       throw e;
+    } finally {
+      setIsLoading(false);
     }
-  };
+  }, [makeApiCall, pageNo]);
 
   return {
     pageNo,
     isLoading,
     error,
     data,
-    execute: useCallback(execute, []),
+    execute,
   };
 };
