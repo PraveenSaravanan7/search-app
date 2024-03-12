@@ -13,6 +13,10 @@ export const Header = ({ title, updateSearchQuery }: IHeaderProps) => {
   return (
     <div className={styles.header}>
       <Icon
+        onClick={() => {
+          updateSearchQuery("");
+          setShowSearch(false);
+        }}
         size={18}
         iconUrl="https://test.create.diagnal.com/images/Back.png"
       />
@@ -24,15 +28,6 @@ export const Header = ({ title, updateSearchQuery }: IHeaderProps) => {
             autoFocus={true}
             onInput={(event) => updateSearchQuery(event.currentTarget.value)}
           />
-
-          <button
-            onClick={() => {
-              updateSearchQuery("");
-              setShowSearch(false);
-            }}
-          >
-            Close
-          </button>
         </>
       )}
 

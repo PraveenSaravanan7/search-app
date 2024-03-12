@@ -10,9 +10,10 @@ export const Movie = ({ movie }: IMovieProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
 
-  const src = `https://test.create.diagnal.com/images/${
-    isVisible ? movie["poster-image"] : "placeholder_for_missing_posters.png"
-  }`;
+  const placeholderImageUrl =
+    "https://test.create.diagnal.com/images/placeholder_for_missing_posters.png";
+
+  const movieImageUrl = `https://test.create.diagnal.com/images/${movie["poster-image"]}`;
 
   useEffect(() => {
     if (isVisible || !ref.current) return;
@@ -28,8 +29,13 @@ export const Movie = ({ movie }: IMovieProps) => {
 
   return (
     <div className={styles.movieContainer}>
-      <img src={src} ref={ref} />
-      {movie.name}
+      <img
+        className={styles.movieBanner}
+        src={isVisible ? movieImageUrl : placeholderImageUrl}
+        onError={(event) => (event.currentTarget.src = placeholderImageUrl)}
+        ref={ref}
+      />
+      <div className={styles.movieName}>{movie.name}</div>
     </div>
   );
 };
