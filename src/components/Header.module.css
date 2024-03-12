@@ -17,3 +17,11 @@
 .header > input {
   height: 30px;
 }
+
+.searchInput {
+  outline: 0;
+  border: 0;
+  width: 100%;
+  background-color: var(--background-1);
+  border-bottom: 2px solid #fff;
+}

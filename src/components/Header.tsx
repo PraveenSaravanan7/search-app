@@ -23,12 +23,11 @@ export const Header = ({ title, updateSearchQuery }: IHeaderProps) => {
       {!showSearch ? (
         title
       ) : (
-        <>
-          <input
-            autoFocus={true}
-            onInput={(event) => updateSearchQuery(event.currentTarget.value)}
-          />
-        </>
+        <input
+          className={styles.searchInput}
+          autoFocus={true}
+          onInput={(event) => updateSearchQuery(event.currentTarget.value)}
+        />
       )}
 
       {!showSearch && (

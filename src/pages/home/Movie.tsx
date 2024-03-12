@@ -1,12 +1,14 @@
 import styles from "./Movie.module.css";
 import { IMovie } from "../../models/movie";
 import { useEffect, useRef, useState } from "react";
+import { highlightText } from "../../utils/common";
 
 interface IMovieProps {
   movie: IMovie;
+  query: string;
 }
 
-export const Movie = ({ movie }: IMovieProps) => {
+export const Movie = ({ movie, query }: IMovieProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
 
@@ -35,7 +37,10 @@ export const Movie = ({ movie }: IMovieProps) => {
         onError={(event) => (event.currentTarget.src = placeholderImageUrl)}
         ref={ref}
       />
-      <div className={styles.movieName}>{movie.name}</div>
+      <div
+        className={styles.movieName}
+        dangerouslySetInnerHTML={{ __html: highlightText(movie.name, query) }}
+      ></div>
     </div>
   );
 };

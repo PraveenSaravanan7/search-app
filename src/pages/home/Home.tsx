@@ -11,6 +11,7 @@ export const Home = () => {
   const [movies, setMovies] = useState<
     TGetMoviesResponse["page"]["content-items"]["content"]
   >([]);
+  
   const [searchQuery, setSearchQuery] = useState("");
 
   const [reachedEnd, setReachedEnd] = useState(false);
@@ -60,7 +61,7 @@ export const Home = () => {
             !searchQuery ||
             movie.name.toLowerCase().includes(searchQuery.toLowerCase())
           )
-            return <Movie key={index} movie={movie} />;
+            return <Movie key={index} movie={movie} query={searchQuery} />;
 
           return <></>;
         })}
