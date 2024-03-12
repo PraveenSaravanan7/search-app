@@ -11,7 +11,7 @@ export const Home = () => {
   const [movies, setMovies] = useState<
     TGetMoviesResponse["page"]["content-items"]["content"]
   >([]);
-  
+
   const [searchQuery, setSearchQuery] = useState("");
 
   const [reachedEnd, setReachedEnd] = useState(false);
@@ -46,6 +46,8 @@ export const Home = () => {
 
   useEffect(() => {
     loadMovies();
+
+    return () => setMovies([]); // clean up
   }, []);
 
   return (
