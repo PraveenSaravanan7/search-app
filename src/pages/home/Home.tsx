@@ -83,7 +83,9 @@ export const Home = () => {
           ))}
         </div>
       ) : (
-        <div className={styles.emptyBanner}>No Result Found</div>
+        <div className={styles.emptyBanner}>
+          {!searchQuery ? "Loading..." : "No Result Found"}
+        </div>
       )}
     </div>
   );
