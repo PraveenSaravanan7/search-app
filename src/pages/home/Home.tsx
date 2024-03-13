@@ -52,6 +52,16 @@ export const Home = () => {
     );
   }, [movies, searchQuery]);
 
+  const allMovieNames = useMemo(
+    () => [
+      ...movies.reduce<Set<string>>((acc, movie) => {
+        acc.add(movie.name);
+        return acc;
+      }, new Set()),
+    ],
+    [movies]
+  );
+
   useEffect(() => {
     loadMovies();
 
@@ -63,6 +73,7 @@ export const Home = () => {
       <Header
         title="Romantic Comedy"
         updateSearchQuery={(query) => setSearchQuery(query)}
+        movies={allMovieNames}
       />
 
       {filteredMovies.length ? (

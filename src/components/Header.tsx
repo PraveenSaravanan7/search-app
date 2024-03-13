@@ -5,9 +5,10 @@ import { Icon } from "./Icon";
 interface IHeaderProps {
   title: string;
   updateSearchQuery: (query: string) => void;
+  movies: string[];
 }
 
-export const Header = ({ title, updateSearchQuery }: IHeaderProps) => {
+export const Header = ({ title, updateSearchQuery, movies }: IHeaderProps) => {
   const [showSearch, setShowSearch] = useState(false);
 
   return (
@@ -23,11 +24,19 @@ export const Header = ({ title, updateSearchQuery }: IHeaderProps) => {
       {!showSearch ? (
         title
       ) : (
-        <input
-          className={styles.searchInput}
-          autoFocus={true}
-          onInput={(event) => updateSearchQuery(event.currentTarget.value)}
-        />
+        <>
+          <input
+            list="movies"
+            className={styles.searchInput}
+            autoFocus={true}
+            onInput={(event) => updateSearchQuery(event.currentTarget.value)}
+          />
+          <datalist id="movies">
+            {movies.map((name) => (
+              <option value={name} />
+            ))}
+          </datalist>
+        </>
       )}
 
       {!showSearch && (
