@@ -9,7 +9,17 @@
 
 .gridContainer {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)); /* minmax to handle over flow */
+  grid-template-columns: repeat(
+    3,
+    minmax(0, 1fr)
+  ); /* minmax to handle over flow */
   gap: 1em;
   padding: 1em;
+}
+
+.emptyBanner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

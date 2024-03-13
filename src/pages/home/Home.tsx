@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./Home.module.css";
 import { Header } from "../../components/Header";
 import { useMakeApiCall } from "../../hooks/useMakeApiCall";
@@ -44,6 +44,14 @@ export const Home = () => {
     if (isBottomReached) loadMovies();
   };
 
+  const filteredMovies = useMemo(() => {
+    if (!searchQuery) return movies;
+
+    return movies.filter((movie) =>
+      movie.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [movies, searchQuery]);
+
   useEffect(() => {
     loadMovies();
 
@@ -57,17 +65,15 @@ export const Home = () => {
         updateSearchQuery={(query) => setSearchQuery(query)}
       />
 
-      <div className={styles.gridContainer}>
-        {movies.map((movie, index) => {
-          if (
-            !searchQuery ||
-            movie.name.toLowerCase().includes(searchQuery.toLowerCase())
-          )
-            return <Movie key={index} movie={movie} query={searchQuery} />;
-
-          return <></>;
-        })}
-      </div>
+      {filteredMovies.length ? (
+        <div className={styles.gridContainer}>
+          {filteredMovies.map((movie, index) => (
+            <Movie key={index} movie={movie} query={searchQuery} />
+          ))}
+        </div>
+      ) : (
+        <div className={styles.emptyBanner}>No Result Found</div>
+      )}
     </div>
   );
 };
